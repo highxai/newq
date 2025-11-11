@@ -39,39 +39,13 @@ npm install newq
 
 ```ts
 import { createQueue, createWorker } from "newq";
-import { drizzleAdapter } from "newq/adapters/drizzle-sqlite";
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
-import { db } from "./db";
-
-// Drizzle schema definitions
-const jobs = sqliteTable("newq_jobs", {
-  id: text("id").primaryKey(),
-  queue: text("queue").notNull(),
-  payload: text("payload").notNull(),
-  attempts: integer("attempts").notNull().default(0),
-  maxAttempts: integer("max_attempts").notNull().default(3),
-  visibleAt: integer("visible_at").notNull(),
-  lockedUntil: integer("locked_until").notNull().default(0),
-  createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
-  status: text("status").notNull().default("pending"),
-  meta: text("meta"),
-});
-
-const jobLogs = sqliteTable("newq_job_logs", {
-  id: text("id").primaryKey(),
-  jobId: text("job_id").notNull(),
-  queue: text("queue").notNull(),
-  event: text("event").notNull(),
-  data: text("data"),
-  createdAt: integer("created_at").notNull(),
-});
+import { inMemoryAdapter } from "newq/adapters/in-memory";
 
 type Queues = {
   email: { to: string; subject: string; body: string };
 };
 
-const adapter = drizzleAdapter(db, { jobs, jobLogs });
+const adapter = inMemoryAdapter();
 
 const queue = createQueue<Queues>(adapter, {
   archiveOnComplete: true,
