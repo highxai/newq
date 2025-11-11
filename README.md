@@ -431,7 +431,9 @@ Useful for local testing and development.
 
 - [x] Drizzle Adapter (LibSQL/Turso)
 - [x] MongoDB Adapter
-- [x] Redis Adapter (Sorted Sets)
+- [x] In-memory Adapter
+- [ ] Redis Adapter
+- [ ] S3 Adapter
 - [ ] Job Dependencies
 - [ ] Dead-letter Queue
 - [ ] OpenTelemetry Integration
@@ -441,5 +443,5 @@ Useful for local testing and development.
 
 ## 📜 License
 
-MIT © 2025 
+MIT
 
