@@ -1,7 +1,7 @@
 {
   "name": "newq",
   "description": "A distributed, modular, functional, adapter-based, type-safe queue system that works flawlessly in multi-replica and multi-worker setups.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "files": [
     "dist"
